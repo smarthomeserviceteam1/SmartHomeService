@@ -4,35 +4,37 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using SmartHome.ViewModel;
 
 namespace RESTService.Controllers
 {
-    [Authorize]
-    public class ValuesController : ApiController
+    public class GarageDoorRESTController : ApiController
     {
-        // GET api/values
+        // GET api/<controller>
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5
+        // GET api/<controller>/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        // POST api/<controller>
+        public void Post(Guid id, bool open)
         {
+           // var viewModel = new GarageViewModel(){ id = id, Open = open}
+
         }
 
-        // PUT api/values/5
+      // PUT api/<controller>/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/<controller>/5
         public void Delete(int id)
         {
         }
