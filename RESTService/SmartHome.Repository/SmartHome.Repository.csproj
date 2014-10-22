@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C61CA7CF-B88F-4249-9E66-7E0F42A075D6}</ProjectGuid>
+    <ProjectGuid>{1119A1F5-8267-4927-93D7-FF23A54F8DD9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartHome.ViewModel</RootNamespace>
-    <AssemblyName>SmartHome.ViewModel</AssemblyName>
+    <RootNamespace>SmartHome.Repository</RootNamespace>
+    <AssemblyName>SmartHome.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,8 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Security.cs" />
-    <Compile Include="IndexViewModel.cs" />
+    <Compile Include="HashMD5.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

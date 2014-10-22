@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome.ViewModel
 {
-    public class GarageViewModel
+    public class Security
     {
-        public Guid id { get; set; }
-        public bool Open { get; set; }
+        public string SessionID { get; set; }
+        public string SecretKey { get; set; }
     }
 }

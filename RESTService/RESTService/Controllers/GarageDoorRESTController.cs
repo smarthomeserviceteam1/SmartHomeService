@@ -5,11 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using SmartHome.ViewModel;
+using SmartHome.Repository;
 
 namespace RESTService.Controllers
 {
     public class GarageDoorRESTController : ApiController
     {
+        private string filename = AppDomain.CurrentDomain.BaseDirectory + "App_Data\\" + "Runtime\\" + "session.txt";
+
         // GET api/<controller>
         public IEnumerable<string> Get()
         {
@@ -17,11 +20,42 @@ namespace RESTService.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public Security Get(string userid, string pin)
         {
-            return "value";
+            if (userid == "userid" && pin == "1234")
+                return new Security { SessionID = "23232455654", SecretKey = Guid.NewGuid().ToString() };
+
+            return new Security();
         }
 
+        public string Get(string userid, string sessionid, string hash)
+        {
+            var pin="1234";
+            var pinAndKey = ReadFromFile();
+            var currentHash = HashMD5.GetMd5Hash(pinAndKey);
+            if (hash == currentHash)
+            { 
+                var newkey = Guid.NewGuid().ToString();
+                var newpinAndKey =pin + newkey;
+                WriteToFile(newpinAndKey);
+                return newkey;
+            }
+            return string.Empty;
+        }
+
+        private void WriteToFile(string fileContents)
+        {
+            var sw = new System.IO.StreamWriter(filename, true);
+            sw.WriteLine(fileContents);
+            sw.Close();
+        }
+
+        private string ReadFromFile()
+        {
+            var fileContents = System.IO.File.ReadAllText(filename);
+            return fileContents;
+        }
+        
         // POST api/<controller>
         public void Post(Guid id, bool open)
         {
@@ -38,5 +72,6 @@ namespace RESTService.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }
